@@ -74,58 +74,58 @@ export default function Index() {
   const creatorEarnings = cartTotal - platformFee;
 
   const ContentCard = ({ item }: { item: ContentItem }) => (
-    <Card className="group relative overflow-hidden bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/20 animate-fade-in">
-      <div className="relative h-48 overflow-hidden">
-        <div className={`absolute inset-0 bg-gradient-to-br ${getTypeColor(item.type)} opacity-80`}></div>
-        <img src={item.image} alt={item.title} className="w-full h-full object-cover mix-blend-overlay" />
-        
-        {item.trending && (
-          <Badge className="absolute top-3 left-3 bg-gradient-primary text-white border-0 animate-pulse-glow">
-            🔥 Trending
-          </Badge>
-        )}
-        
-        <Button
-          size="icon"
-          variant="ghost"
-          className="absolute top-3 right-3 bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm"
-          onClick={() => toggleFavorite(item.id)}
-        >
-          <Icon name="Heart" className={favorites.includes(item.id) ? 'fill-red-500 text-red-500' : ''} size={20} />
-        </Button>
+    <Card className="group relative overflow-hidden bg-card border-border hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/20 animate-fade-in aspect-square">
+      <div className="relative w-full h-full flex flex-col">
+        <div className="relative flex-1 overflow-hidden">
+          <div className={`absolute inset-0 bg-gradient-to-br ${getTypeColor(item.type)} opacity-80`}></div>
+          <img src={item.image} alt={item.title} className="w-full h-full object-cover mix-blend-overlay" />
+          
+          {item.trending && (
+            <Badge className="absolute top-3 left-3 bg-gradient-primary text-white border-0 animate-pulse-glow">
+              🔥 Trending
+            </Badge>
+          )}
+          
+          <Button
+            size="icon"
+            variant="ghost"
+            className="absolute top-3 right-3 bg-black/40 hover:bg-black/60 text-white backdrop-blur-sm"
+            onClick={() => toggleFavorite(item.id)}
+          >
+            <Icon name="Heart" className={favorites.includes(item.id) ? 'fill-red-500 text-red-500' : ''} size={20} />
+          </Button>
 
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-          <Badge variant="outline" className="bg-black/40 text-white border-white/20 backdrop-blur-sm mb-2">
-            <Icon name={getTypeIcon(item.type)} size={14} className="mr-1" />
-            {item.type === 'music' ? 'Музыка' : item.type === 'cover' ? 'Обложка' : 'Текст'}
-          </Badge>
-        </div>
-      </div>
-
-      <div className="p-4">
-        <h3 className="font-heading font-bold text-lg mb-1 text-foreground">{item.title}</h3>
-        <p className="text-sm text-muted-foreground mb-3 flex items-center gap-2">
-          <Icon name="User" size={14} />
-          {item.creator}
-        </p>
-
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Icon name="Heart" size={14} />
-              {item.likes}
-            </span>
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-3">
+            <Badge variant="outline" className="bg-black/40 text-white border-white/20 backdrop-blur-sm text-xs">
+              <Icon name={getTypeIcon(item.type)} size={12} className="mr-1" />
+              {item.type === 'music' ? 'Музыка' : item.type === 'cover' ? 'Обложка' : 'Текст'}
+            </Badge>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="font-heading font-bold text-xl bg-gradient-primary bg-clip-text text-transparent">
-              {item.price}₽
-            </span>
+        </div>
+
+        <div className="p-3 bg-card">
+          <h3 className="font-heading font-bold text-base mb-1 text-foreground truncate">{item.title}</h3>
+          <p className="text-xs text-muted-foreground mb-2 flex items-center gap-1 truncate">
+            <Icon name="User" size={12} />
+            {item.creator}
+          </p>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-muted-foreground flex items-center gap-1">
+                <Icon name="Heart" size={12} />
+                {item.likes}
+              </span>
+              <span className="font-heading font-bold text-lg bg-gradient-primary bg-clip-text text-transparent">
+                {item.price}₽
+              </span>
+            </div>
             <Button 
               size="sm" 
-              className="bg-gradient-primary hover:opacity-90 text-white border-0"
+              className="bg-gradient-primary hover:opacity-90 text-white border-0 h-8 w-8 p-0"
               onClick={() => addToCart(item)}
             >
-              <Icon name="ShoppingCart" size={16} />
+              <Icon name="ShoppingCart" size={14} />
             </Button>
           </div>
         </div>
